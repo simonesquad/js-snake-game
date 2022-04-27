@@ -6,7 +6,7 @@ const EXPANSION_RATE = 5
 export function update() {
     if (onSnake(food)) {
         expandSnake(EXPANSION_RATE)
-        food = { x: 20, y: 10 }
+        food = getRandomFoodPosition()
     }
 }
 
@@ -17,3 +17,11 @@ export function draw(gameBoard) {
     foodElement.classList.add('food')
     gameBoard.appendChild(foodElement)
 }
+
+function getRandomFoodPosition() {
+    let newFoodPosition
+    while (newFoodPosition == null || onSnake(newFoodPosition)) {
+        newFoodPosition = randomGridPosition()
+    }
+    return newFoodPosition
+    }
